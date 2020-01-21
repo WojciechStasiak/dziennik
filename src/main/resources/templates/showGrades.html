@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymekeaf.org">
+
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Students</title>
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="content">
+    <center>
+        <p>Oceny studenta:</p>
+
+        <tr th:each="student: ${student}">
+            <td th:text="${student.getId()} "></td>
+            <td th:text="${student.getName()}"></td>
+            <td th:text="${student.getSurname()}"></td>
+        </tr>
+        <table>
+            <thead>
+            <tr>
+                <th>Ocena</th>
+                <th>Opis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="grade: ${grades}">
+                <td th:text="${grade.getGradeEnum().value}">
+                <td th:text="${grade.getDescription()}">
+            </tr>
+            </tbody>
+        </table>
+    </center>
+</div>
+
+</body>
+</html>

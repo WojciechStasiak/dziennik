@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymekeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Students</title>
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="content">
+    <center>
+        <form action="#" method="post"
+              th:action="@{/addStudent}" th:object="${student}">
+            <table>
+                <tr>
+                    <td><label>Id: </label></td>
+                    <td><input id="id" th:field="*{id}"></td>
+                </tr>
+                <tr>
+                    <td><label>Name: </label></td>
+                    <td><input id="name" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td><label>Surname: </label></td>
+                    <td><input id="surname" th:field="*{surname}"></td>
+                </tr>
+            </table>
+            <button type="submit">Save student</button>
+        </form>
+    </center>
+</div>
+
+</body>
+</html>
