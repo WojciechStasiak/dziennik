@@ -13,7 +13,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @RequestMapping(path = {"/showStudents"})
+    @RequestMapping(path = {"/showStudents",""})
     public String goHomePage(Model model) {
         model.addAttribute("students", studentRepository.findAll());
         model.addAttribute("student1", new Student());
