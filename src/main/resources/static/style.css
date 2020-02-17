@@ -55,23 +55,3 @@
 .subnav:hover .subnav-content {
   display: block;
 }
-
-.content {
-padding-top: 50px;
-float: left;
-text-align: left;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-table, td, th {
-  border: 1px solid black;
-}
-
-body {
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}

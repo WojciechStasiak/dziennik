@@ -9,18 +9,57 @@ table {
 table, td, th {
   border: 1px solid black;
 }
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
+
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#content
+{
+    padding: 40px;
+    width: 200px;
+    background-color: #dedede;
+    height: 100%;
+    margin:0 auto;
+    margin-top: 50px;
+}
+
+
+
+#footer
+{
+    clear: both;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+    width: 97%;
+    position:absolute;
+}
 
 </style>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+<div id="container">
+    <div th:replace="navbar.html"></div>
 
-<div class="content">
-    <center>
+    <div id="content">
         <p>Oceny studenta:</p>
 
         <tr th:each="student: ${student}">
@@ -42,8 +81,12 @@ table, td, th {
             </tr>
             </tbody>
         </table>
-    </center>
-</div>
+    </div>
 
+    <div id="footer">
+        Dziennik &copy; Wszelkie prawa zastrzeżone
+    </div>
+
+</div>
 </body>
 </html>

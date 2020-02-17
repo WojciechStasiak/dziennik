@@ -2,34 +2,74 @@
 <html xmlns:th="http://www.thymekeaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
+    <style>
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
+
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#content
+{
+    padding: 40px;
+    width: 200px;
+    background-color: #dedede;
+    height: 140px;
+    margin:0 auto;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+#footer
+{
+    clear: both;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+    width: 97%;
+    position:absolute;
+}
+
+
+    </style>
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+<div id="container">
+    <div th:replace="navbar.html"></div>
 
-<div class="content">
-    <center>
+    <div id="content">
+
         <form action="#" method="post"
               th:action="@{/addStudent}" th:object="${student}">
-            <table>
-                <tr>
-                    <td><label>Id: </label></td>
-                    <td><input id="id" th:field="*{id}"></td>
-                </tr>
-                <tr>
-                    <td><label>Name: </label></td>
-                    <td><input id="name" th:field="*{name}"></td>
-                </tr>
-                <tr>
-                    <td><label>Surname: </label></td>
-                    <td><input id="surname" th:field="*{surname}"></td>
-                </tr>
-            </table>
+
+            <label>Name: </label><br>
+            <input id="name" th:field="*{name}"><br>
+            <label>Surname: </label><br>
+            <input id="surname" th:field="*{surname}"><br>
+
             <button type="submit">Save student</button>
         </form>
-    </center>
-</div>
 
+    </div>
+
+
+</div>
+<div id="footer">
+    Dziennik &copy; Wszelkie prawa zastrzeżone
+</div>
 </body>
 </html>

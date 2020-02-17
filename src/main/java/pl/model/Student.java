@@ -9,6 +9,7 @@ public class Student {
 
     @Id
     @Column(name = "id_student",nullable = false,unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(nullable = false)

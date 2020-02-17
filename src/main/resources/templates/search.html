@@ -2,22 +2,81 @@
 <html xmlns:th="http://www.thymekeaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
+    <style>
+table {
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+form.button { display: inline; }
+
+
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
+
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#content
+{
+    padding: 40px;
+    width: 200px;
+    background-color: #dedede;
+    height: 100%;
+    margin:0 auto;
+    margin-top: 50px;
+}
+
+
+
+#footer
+{
+    clear: both;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+    width: 97%;
+    position:absolute;
+}
+
+    </style>
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+<div id="container">
+    <div th:replace="navbar.html"></div>
 
-<div class="content">
-    <center>
+    <div id="content">
+
         <form action="#" method="post"
               th:action="@{/searchStudent{name}(name=${student.name})}" th:object="${student}">
             <p>Name: <input id="name" th:field="*{name}"></p>
 
             <button type="submit">Znajdź studenta</button>
         </form>
-    </center>
-</div>
 
+    </div>
+
+    <div id="footer">
+        Dziennik &copy; Wszelkie prawa zastrzeżone
+    </div>
+
+</div>
 </body>
 </html>

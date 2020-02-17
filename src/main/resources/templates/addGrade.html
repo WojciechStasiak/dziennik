@@ -2,40 +2,80 @@
 <html xmlns:th="http://www.thymekeaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
+    <style>
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
+
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#content
+{
+    padding: 40px;
+    width: 250px;
+    background-color: #dedede;
+    height: 140px;
+    margin:0 auto;
+    margin-top: 200px;
+
+}
+
+#footer
+{
+    clear: both;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+    width: 97%;
+    position:absolute;
+}
+
+
+    </style>
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+<div id="container">
+    <div th:replace="navbar.html"></div>
 
-<div class="content">
-    <center>
-        <form action="#" method="post" th:action="@{/addGrade}" th:object="${grade}">
+    <div id="content">
+        <form method="post" th:action="@{/addGrade}" th:object="${grade}">
 
-            <table>
-                <tr>
-                    <td><label>Student id:</label></td>
-                    <td><input type="text" th:field="${student.Id}" readonly></td>
-                </tr>
-                <tr>
-                    <td><label>Grade: </label></td>
-                    <td><select th:field="${grade.gradeEnum}">
-                        <option th:each="gradeEnum : ${T(pl.model.GradeEnum).values()}"
-                                th:value="${gradeEnum}" th:text="${gradeEnum.value}">
-                        </option>
-                    </select>
-                    </td>
-                </tr>
 
-                <tr>
-                <td><label>Description: </label></td>
-                <td><input th:field="*{description}"></td>
-                </tr>
-            </table>
+            <label>Dodawanie oceny studentowi:</label><br>
+            <tr th:each="student: ${student}">
+                <td th:text="${student.getName()}"></td>
+                <td th:text="${student.getSurname()}"></td>
+            </tr><br>
+            <input type="hidden" th:field="${student}">
+            <label>Grade: </label>
+            <select th:field="${grade.gradeEnum}">
+                <option th:each="gradeEnum : ${T(pl.model.GradeEnum).values()}"
+                        th:value="${gradeEnum}" th:text="${gradeEnum.value}">
+                </option>
+            </select>
+
+            <label>Description: </label>
+            <input th:field="*{description}">
+
             <button type="submit">Add Grade</button>
         </form>
 
-    </center>
+
+    </div>
 </div>
 
 </body>

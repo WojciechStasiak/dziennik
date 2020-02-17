@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymekeaf.org">
-<style>
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
 table {
   border-collapse: collapse;
 }
@@ -12,18 +15,56 @@ table, td, th {
 form.button { display: inline; }
 
 
-</style>
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Students</title>
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#content
+{
+    padding: 40px;
+    width: 500px;
+    background-color: #dedede;
+    max-height: 100%;
+    margin:0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+
+#footer
+{
+    clear: both;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+    width: 97%;
+
+}
+    </style>
 </head>
 <body>
-<div th:replace="navbar.html"></div>
 
-<div class="content">
-    <center>
+<div id="container">
+    <div th:replace="navbar.html"></div>
+
+    <div id="content">
+
         <table>
             <thead>
             <tr>
@@ -39,11 +80,15 @@ form.button { display: inline; }
                 <td th:text="${student.getName()}">
                 <td th:text="${student.getSurname()}">
                 <td>
-                    <form class="button" th:action="@{'/showAddGrade' + ${student.getId()}}" method="get">
+                    <form class="button" th:action="@{'/showAddGrade/' + ${student.getId()}}" method="get">
                         <button type="submit">Add Grade</button>
                     </form>
                     <form class="button" th:action="@{'/showGrades' + ${student.getId()}}" method="get">
                         <button type="submit">Show Grades</button>
+                    </form>
+
+                    <form class="button" th:action="@{'/deleteStudent' + ${student.getId()}}" method="get">
+                        <button type="submit">Delete Student</button>
                     </form>
 
                 </td>
@@ -52,8 +97,13 @@ form.button { display: inline; }
 
 
         </table>
-    </center>
-</div>
 
+    </div>
+
+
+</div>
+<div id="footer">
+    Dziennik &copy; Wszelkie prawa zastrzeżone
+</div>
 </body>
 </html>

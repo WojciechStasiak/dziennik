@@ -40,12 +40,18 @@ public class StudentController {
     }
 
     @PostMapping(path = {"/addStudent"})
-    public String searchStudentByName(@ModelAttribute Student student, Model model) {
+    public String addStudent(@ModelAttribute Student student, Model model) {
         studentRepository.save(student);
         model.addAttribute("students",studentRepository.findAll());
         model.addAttribute("student", new Student());
         return "studentPage";
     }
 
+    @DeleteMapping(path = {"/deleteStudent/{id}"})
+    public String deleteStudent(@PathVariable("id") Integer id){
+
+        studentRepository.deleteById(id);
+        return "deleted";
+    }
 
 }
