@@ -80,7 +80,7 @@ form.button { display: inline; }
                 <td th:text="${student.getName()}">
                 <td th:text="${student.getSurname()}">
                 <td>
-                    <form class="button" th:action="@{'/showAddGrade/' + ${student.getId()}}" method="get">
+                    <form class="button" th:action="@{'/showAddGrade/' + ${student.getId()} }" method="get">
                         <button type="submit">Add Grade</button>
                     </form>
                     <form class="button" th:action="@{'/showGrades' + ${student.getId()}}" method="get">

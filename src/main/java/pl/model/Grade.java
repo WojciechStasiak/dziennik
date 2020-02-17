@@ -13,7 +13,7 @@ public class Grade {
     @Column(nullable = false)
     private GradeEnum gradeEnum;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_student", nullable = true)
     private Student student;
 

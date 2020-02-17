@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymekeaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
     <style>
          html, body
@@ -19,6 +20,17 @@
     margin-right: auto;
 
 }
+
+
+#menu
+{
+    background-color: #303030;
+    margin-top: 20px;
+    color: #ffffff;
+    padding: 10px;
+
+}
+
 
 #content
 {
@@ -38,10 +50,10 @@
     text-align: center;
     padding: 20px;
     font-size: 18px;
+    position: fixed;
     left: 0;
     bottom: 0;
-    width: 97%;
-    position:absolute;
+    width: 100%;
 }
 
 
@@ -55,23 +67,23 @@
         <form method="post" th:action="@{/addGrade}" th:object="${grade}">
 
 
-            <label>Dodawanie oceny studentowi:</label><br>
-            <tr th:each="student: ${student}">
+            <label>Dodawanie oceny studentowi:</label>
+            <tr th:each="student: ${students}">
                 <td th:text="${student.getName()}"></td>
                 <td th:text="${student.getSurname()}"></td>
-            </tr><br>
-            <input type="hidden" th:field="${student}">
-            <label>Grade: </label>
-            <select th:field="${grade.gradeEnum}">
-                <option th:each="gradeEnum : ${T(pl.model.GradeEnum).values()}"
-                        th:value="${gradeEnum}" th:text="${gradeEnum.value}">
-                </option>
-            </select>
+                <br>
+                <input type="hidden" th:field="${student.Id}">
+                <label>Grade: </label>
+                <select th:field="${grade.gradeEnum}">
+                    <option th:each="gradeEnum : ${T(pl.model.GradeEnum).values()}"
+                            th:value="${gradeEnum}" th:text="${gradeEnum.value}">
+                    </option>
+                </select><br>
 
-            <label>Description: </label>
-            <input th:field="*{description}">
+                <label>Description: </label>
+                <input th:field="*{description}"><br>
 
-            <button type="submit">Add Grade</button>
+                <button type="submit">Add Grade</button>
         </form>
 
 

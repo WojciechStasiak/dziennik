@@ -19,8 +19,11 @@ public class GradeController {
     StudentRepository studentRepository;
 
     @RequestMapping(path = {"/showAddGrade/{id}"})
-    public String showAddGrade(@PathVariable("id") Integer id,Model model) {
-        model.addAttribute("student", studentRepository.findById(id));
+    public String showAddGrade(@PathVariable("id") Integer id, Model model) {
+        Student student = new Student();
+        student.setId(id);
+        model.addAttribute("student", student);
+        model.addAttribute("students",studentRepository.findById(id));
         model.addAttribute("grade", new Grade());
         return "addGrade";
     }
