@@ -87,7 +87,7 @@ form.button { display: inline; }
                         <button type="submit">Show Grades</button>
                     </form>
 
-                    <form class="button" th:action="@{'/deleteStudent' + ${student.getId()}}" method="get">
+                    <form class="button" th:action="@{'/deleteStudent/' + ${student.getId()}}" method="POST">
                         <button type="submit">Delete Student</button>
                     </form>
 

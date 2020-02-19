@@ -1,5 +1,7 @@
 package pl.model;
 
+import org.springframework.stereotype.Component;
+
 public enum GradeEnum {
     BRAK("-"),
 

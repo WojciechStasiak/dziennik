@@ -28,7 +28,7 @@ table, td, th {
 #content
 {
     padding: 40px;
-    width: 200px;
+    width: 380px;
     background-color: #dedede;
     height: 100%;
     margin:0 auto;
@@ -49,6 +49,7 @@ table, td, th {
     width: 97%;
     position:absolute;
 }
+
 
 </style>
 <head>
@@ -72,12 +73,18 @@ table, td, th {
             <tr>
                 <th>Ocena</th>
                 <th>Opis</th>
+                <th>Opcje</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="grade: ${grades}">
                 <td th:text="${grade.getGradeEnum().value}">
                 <td th:text="${grade.getDescription()}">
+                <td>
+                    <form class="button" th:action="@{'/deleteGrade/' + ${grade.getId_grade()}}" method="POST">
+                        <button type="submit">Delete grade</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

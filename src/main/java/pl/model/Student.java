@@ -1,16 +1,19 @@
 package pl.model;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
 @Table (name = "students")
+@Component
 public class Student {
 
     @Id
     @Column(name = "id_student",nullable = false,unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -21,17 +24,17 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer id, String name, String surname) {
+    public Student(Long id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

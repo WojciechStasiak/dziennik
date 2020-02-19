@@ -1,13 +1,12 @@
 package pl.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.repository.CrudRepository;
 import pl.model.Student;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface StudentRepository extends JpaRepository<Student, Long> {
-    List<Student> findByName(String name);
-    List<Student> findById(Integer id);
-    List<Student> deleteById(Integer id);
+
+public interface StudentRepository extends CrudRepository<Student, Long> {
+
+    Optional<Student> findByName(String name);
 }

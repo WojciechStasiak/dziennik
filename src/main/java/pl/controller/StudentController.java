@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.Service.GradeService;
+import pl.Service.StudentService;
 import pl.model.Student;
 import pl.repository.StudentRepository;
 
@@ -11,11 +13,12 @@ import pl.repository.StudentRepository;
 public class StudentController {
 
     @Autowired
-    private StudentRepository studentRepository;
-
+    private StudentService studentService;
+    @Autowired
+    private GradeService gradeService;
     @RequestMapping(path = {"/showStudents",""})
     public String goHomePage(Model model) {
-        model.addAttribute("students", studentRepository.findAll());
+        model.addAttribute("students", studentService.findAllStudents());
         model.addAttribute("student1", new Student());
         return "studentPage";
     }
@@ -28,7 +31,7 @@ public class StudentController {
 
     @RequestMapping(path = {"/searchStudent{name}"})
     public String searchStudentByName(@RequestParam(name = "name", defaultValue = "", required = false) String name, Model model) {
-        model.addAttribute("students", studentRepository.findByName(name));
+        model.addAttribute("students", studentService.findByName(name));
         model.addAttribute("student", new Student());
         return "studentPage";
     }
@@ -41,17 +44,20 @@ public class StudentController {
 
     @PostMapping(path = {"/addStudent"})
     public String addStudent(@ModelAttribute Student student, Model model) {
-        studentRepository.save(student);
-        model.addAttribute("students",studentRepository.findAll());
+        studentService.save(student);
+        model.addAttribute("students",studentService.findAllStudents());
         model.addAttribute("student", new Student());
         return "studentPage";
     }
 
-    @DeleteMapping(path = {"/deleteStudent/{id}"})
-    public String deleteStudent(@PathVariable("id") Integer id){
-
-        studentRepository.deleteById(id);
-        return "deleted";
+    @RequestMapping(path = {"/deleteStudent/{id}"})
+    public String deleteStudent(@PathVariable("id") Long id, Model model){
+        Student student = studentService.getOne(id);
+        gradeService.deleteAllGradesByStudentId(student);
+        studentService.deleteStudent(id);
+        model.addAttribute("students", studentService.findAllStudents());
+        model.addAttribute("student1", new Student());
+        return "studentPage";
     }
 
 }

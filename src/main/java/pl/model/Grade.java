@@ -1,14 +1,17 @@
 package pl.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "grades")
+@Component
 public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_grade", nullable = false, unique = true)
-    private Integer id_grade;
+    private Long id_grade;
 
     @Column(nullable = false)
     private GradeEnum gradeEnum;
@@ -33,18 +36,18 @@ public class Grade {
         this.description = description;
     }
 
-    public Grade(Integer id_grade, GradeEnum gradeEnum, Student student, String description) {
+    public Grade(Long id_grade, GradeEnum gradeEnum, Student student, String description) {
         this.id_grade = id_grade;
         this.gradeEnum = gradeEnum;
         this.student = student;
         this.description = description;
     }
 
-    public Integer getId_grade() {
+    public Long getId_grade() {
         return id_grade;
     }
 
-    public void setId_grade(Integer id_grade) {
+    public void setId_grade(Long id_grade) {
         this.id_grade = id_grade;
     }
 
