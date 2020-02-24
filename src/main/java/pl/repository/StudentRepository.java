@@ -3,10 +3,9 @@ package pl.repository;
 import org.springframework.data.repository.CrudRepository;
 import pl.model.Student;
 
-import java.util.Optional;
-
+import java.util.List;
 
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
-    Optional<Student> findByName(String name);
+    List<Student> findByName(String name);
 }

@@ -1,4 +1,4 @@
-package pl.Service;
+package pl.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class GradeService {
         gradeRepository.deleteById(id);
     }
 
-    public void deleteAllGradesByStudentId(Student student){
+    public void deleteAllGradesByStudent(Student student){
         List<Grade> grades = findByStudent(student);
         for(Grade grade: grades){
             gradeRepository.deleteById(grade.getId_grade());

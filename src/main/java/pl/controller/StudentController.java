@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.Service.GradeService;
-import pl.Service.StudentService;
+import pl.service.GradeService;
+import pl.service.StudentService;
 import pl.model.Student;
-import pl.repository.StudentRepository;
 
 @Controller
 public class StudentController {
@@ -16,7 +15,8 @@ public class StudentController {
     private StudentService studentService;
     @Autowired
     private GradeService gradeService;
-    @RequestMapping(path = {"/showStudents",""})
+
+    @RequestMapping(path = {"/showStudents","","/"})
     public String goHomePage(Model model) {
         model.addAttribute("students", studentService.findAllStudents());
         model.addAttribute("student1", new Student());
@@ -53,7 +53,7 @@ public class StudentController {
     @RequestMapping(path = {"/deleteStudent/{id}"})
     public String deleteStudent(@PathVariable("id") Long id, Model model){
         Student student = studentService.getOne(id);
-        gradeService.deleteAllGradesByStudentId(student);
+        gradeService.deleteAllGradesByStudent(student);
         studentService.deleteStudent(id);
         model.addAttribute("students", studentService.findAllStudents());
         model.addAttribute("student1", new Student());

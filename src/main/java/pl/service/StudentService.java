@@ -1,4 +1,4 @@
-package pl.Service;
+package pl.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,25 +16,25 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
-    public void save(Student student){
+    public void save(Student student) {
         studentRepository.save(student);
     }
 
-    public List<Student> findAllStudents(){
+    public List<Student> findAllStudents() {
         return (List<Student>) studentRepository.findAll();
     }
 
-    public Student getOne(Long id){
+    public Student getOne(Long id) {
         Optional<Student> student = studentRepository.findById(id);
         return student.get();
     }
 
-    public Student findByName(String name){
-        Optional<Student> student = studentRepository.findByName(name);
-        return student.get();
+    public List<Student> findByName(String name) {
+        List<Student> student = studentRepository.findByName(name);
+        return student;
     }
 
-    public void deleteStudent(Long id){
+    public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 }

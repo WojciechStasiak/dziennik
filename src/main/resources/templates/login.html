@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head">
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div th:include="layout :: navigationLoginRegister"></div>
+    <div id="content">
+        <h1>Log in</h1>
+        <form th:action="@{/login}" method="POST">
+            <div>
+                <div class="alert" th:if="${message}" th:text="${message}"></div>
+                <p>
+                    <input type="text" name="email" placeholder="Email"/>
+                </p>
+                <p>
+                    <input type="password" name="password" placeholder="Password"/>
+                </p>
+                <div class="alert" th:if="${error}" th:text="${error}" style="color:red"></div>
+            </div>
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    <div th:include="layout :: footer"></div>
+</div>
+</body>
+</html>

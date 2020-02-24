@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.Service.GradeService;
-import pl.Service.StudentService;
+import pl.service.GradeService;
+import pl.service.StudentService;
 import pl.model.Grade;
 import pl.model.Student;
 
