@@ -29,7 +29,7 @@ public class TeacherController {
     @GetMapping(value = {"/login"})
     public String loginPage(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Wrong passwrod or login");
+            model.addAttribute("error", "Wrong password or login");
 
         if (logout != null)
             model.addAttribute("message", "Logged out");
@@ -43,11 +43,12 @@ public class TeacherController {
     }
 
     @PostMapping(value = {"/register"})
-    public String register(@Valid Teacher teacher, BindingResult bindingResult) {
+    public String register(@Valid Teacher teacher, BindingResult bindingResult, Model model) {
        if (bindingResult.hasErrors())
            return "register";
         teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         teacherRepository.save(teacher);
+        model.addAttribute("registerSuccess","You have successfully registered!");
         return "/login";
     }
 
