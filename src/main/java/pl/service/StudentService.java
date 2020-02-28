@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.model.Student;
+import pl.model.Teacher;
 import pl.repository.StudentRepository;
 
 
@@ -29,9 +30,14 @@ public class StudentService {
         return student.get();
     }
 
-    public List<Student> findByName(String name) {
-        List<Student> student = studentRepository.findByName(name);
+    public List<Student> findByNameAndTeacher(String name,Teacher teacher) {
+        List<Student> student = studentRepository.findByNameAndTeacher(name,teacher);
         return student;
+    }
+
+    public List<Student> findByTeacher(Teacher teacher){
+        List<Student> students = studentRepository.findByTeacher(teacher);
+        return students;
     }
 
     public void deleteStudent(Long id) {

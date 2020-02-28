@@ -44,18 +44,21 @@ form.button { display: inline; }
 
 
 
-#footer
-{
-    clear: both;
-    color: black;
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    left: 0;
-    bottom: 0;
-    width: 97%;
+.footer {
+ position: fixed;
+ bottom: 0px;
+ left: 1px;
+ height: 50px;
+ width: 100%;
+ text-align: center;
+ padding: 20px;
+ font-size: 18px;
+ clear: both;
+ color: black;
+ }
 
-}
+
+
     </style>
 </head>
 <body>
@@ -65,6 +68,7 @@ form.button { display: inline; }
 
     <div id="content">
 
+        <div class="alert" th:if="${message}" th:text="${message}"></div>
         <table>
             <thead>
             <tr>
@@ -102,8 +106,6 @@ form.button { display: inline; }
 
 
 </div>
-<div id="footer">
-    Dziennik &copy; Wszelkie prawa zastrzeżone
-</div>
+<div th:include="layout :: footer"></div>
 </body>
 </html>

@@ -21,13 +21,26 @@ public class Student {
     @Column(nullable = false)
     private String surname;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_teacher", nullable = false)
+    private Teacher teacher;
+
     public Student() {
     }
 
-    public Student(Long id, String name, String surname) {
+    public Student(Long id, String name, String surname, Teacher teacher) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.teacher = teacher;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public Long getId() {
@@ -52,5 +65,15 @@ public class Student {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", teacher=" + teacher +
+                '}';
     }
 }
