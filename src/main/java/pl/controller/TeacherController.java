@@ -44,12 +44,14 @@ public class TeacherController {
 
     @PostMapping(value = {"/register"})
     public String register(@Valid Teacher teacher, BindingResult bindingResult, Model model) {
-       if (bindingResult.hasErrors())
-           return "register";
+        if (bindingResult.hasErrors()) {
+
+            return "register";
+        }
         teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         teacherRepository.save(teacher);
-        model.addAttribute("registerSuccess","You have successfully registered!");
-        return "/login";
+        model.addAttribute("registerSuccess", "You have successfully registered!");
+        return "login";
     }
 
 }
