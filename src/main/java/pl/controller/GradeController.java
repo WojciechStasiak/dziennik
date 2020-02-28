@@ -11,6 +11,8 @@ import pl.model.Grade;
 import pl.model.Student;
 import pl.service.TeacherService;
 
+import java.util.Optional;
+
 
 @Controller
 public class GradeController {
@@ -67,13 +69,21 @@ public class GradeController {
 
     @RequestMapping(path = {"/deleteGrade/{id}"})
     public String deleteGrade(@PathVariable("id") Long id, Model model) {
-        Student student = gradeService.getStudentFromGrade(id);
+
         Teacher teacher = teacherService.getLoggedInTeacher();
+        Optional<Grade> grade = gradeService.getOne(id);
+        if (!grade.isPresent()){
+            model.addAttribute("message", "You can't delete that grade!");
+            model.addAttribute("students", studentService.findByTeacher(teacher));
+            model.addAttribute("student1", new Student());
+            return "studentPage";
+        }
+        
+        Student student = gradeService.getStudentFromGrade(id);
         if ((student.getTeacher().getId_teacher()).equals(teacher.getId_teacher())) {
             gradeService.deleteOne(id);
-        }
-        else {
-            model.addAttribute("message", "You cant't delete that grade!");
+        } else {
+            model.addAttribute("message", "You can't delete that grade!");
             model.addAttribute("students", studentService.findByTeacher(teacher));
             model.addAttribute("student1", new Student());
             return "studentPage";

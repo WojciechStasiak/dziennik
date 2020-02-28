@@ -27,9 +27,8 @@ public class GradeService {
         gradeRepository.save(grade);
     }
 
-    public Grade getOne(Long id){
-        Optional<Grade> grade = gradeRepository.findById(id);
-        return grade.get();
+    public Optional<Grade> getOne(Long id){
+        return gradeRepository.findById(id);
     }
 
     public Student getStudentFromGrade(Long id){
