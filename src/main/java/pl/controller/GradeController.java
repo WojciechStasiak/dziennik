@@ -78,10 +78,10 @@ public class GradeController {
             model.addAttribute("student1", new Student());
             return "studentPage";
         }
-        
+
         Student student = gradeService.getStudentFromGrade(id);
         if ((student.getTeacher().getId_teacher()).equals(teacher.getId_teacher())) {
-            gradeService.deleteOne(id);
+            gradeService.deleteOneGrade(id);
         } else {
             model.addAttribute("message", "You can't delete that grade!");
             model.addAttribute("students", studentService.findByTeacher(teacher));

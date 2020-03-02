@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymekeaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Students</title>
     <style>
          html, body
@@ -20,15 +21,26 @@
 
 }
 
+
+#menu
+{
+    background-color: #303030;
+    margin-top: 20px;
+    color: #ffffff;
+    padding: 10px;
+
+}
+
+
 #content
 {
     padding: 40px;
-    width: 280px;
+    width: 250px;
     background-color: #dedede;
-    height: 200px;
+    height: 140px;
     margin:0 auto;
-    margin-top: 100px;
-    margin-bottom: 10px;
+    margin-top: 200px;
+
 }
 
 .footer {
@@ -45,10 +57,6 @@
  }
 
 
-
-
-
-
     </style>
 </head>
 <body>
@@ -56,22 +64,16 @@
     <div th:replace="navbar.html"></div>
 
     <div id="content">
-
-        <form method="post" th:action="@{/addStudent}" th:object="${student}">
-            <h3>Adding student to the group:</h3>
-
-            <td th:text="${group1.getGroupName()}"></td>
-            <p><input type="hidden" th:attr="value = ${group1.idGroup}" th:field="*{group}"/></p>
-            <p><input id="name" th:field="*{name}" placeholder="Name"></p>
-            <p><input id="surname" th:field="*{surname}" placeholder="Surname"></p>
-
-            <button type="submit">Save student</button>
+        <form method="post" th:action="@{/addGroup}" th:object="${group}">
+            <input th:field="*{groupName}" placeholder="Group name">
+            <button type="submit">Save group</button>
         </form>
 
+
     </div>
-
-
 </div>
+
 <div th:include="layout :: footer"></div>
+
 </body>
 </html>

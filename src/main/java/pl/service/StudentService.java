@@ -3,6 +3,7 @@ package pl.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.model.Group;
 import pl.model.Student;
 import pl.model.Teacher;
 import pl.repository.StudentRepository;
@@ -42,5 +43,10 @@ public class StudentService {
 
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    public List<Student> findByGroup(Group group){
+        List<Student> students = studentRepository.findByGroup(group);
+        return students;
     }
 }

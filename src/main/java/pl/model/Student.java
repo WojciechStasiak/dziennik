@@ -25,14 +25,27 @@ public class Student {
     @JoinColumn(name = "id_teacher", nullable = false)
     private Teacher teacher;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idGroup",nullable = false)
+    private Group group;
+
     public Student() {
     }
 
-    public Student(Long id, String name, String surname, Teacher teacher) {
+    public Student(Long id, String name, String surname, Teacher teacher, Group group) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.teacher = teacher;
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public Teacher getTeacher() {

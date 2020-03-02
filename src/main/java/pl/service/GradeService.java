@@ -37,7 +37,7 @@ public class GradeService {
         return student;
     }
 
-    public void deleteOne(Long id){
+    public void deleteOneGrade(Long id){
         gradeRepository.deleteById(id);
     }
 

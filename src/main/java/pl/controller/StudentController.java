@@ -1,19 +1,18 @@
 package pl.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.model.Grade;
 import pl.model.Teacher;
 import pl.service.GradeService;
+import pl.service.GroupService;
 import pl.service.StudentService;
 import pl.model.Student;
 import pl.service.TeacherService;
 
-import java.security.Principal;
 
 
 @Controller
@@ -25,8 +24,10 @@ public class StudentController {
     private GradeService gradeService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private GroupService groupService;
 
-    @RequestMapping(path = {"/showStudents", "", "/"})
+    @RequestMapping(path = {"/showStudents"})
     public String goHomePage(Model model) {
         Teacher teacher = teacherService.getLoggedInTeacher();
         model.addAttribute("students", studentService.findByTeacher(teacher));
@@ -48,9 +49,12 @@ public class StudentController {
         return "studentPage";
     }
 
-    @RequestMapping(path = {"/showAddStudent"})
-    public String showAddStudent(Model model) {
-        model.addAttribute(new Student());
+    @RequestMapping(path = {"/showAddStudent/{id}"})
+    public String showAddStudent(@PathVariable("id") Long id, Model model) {
+        Student student = new Student();
+        student.setGroup(groupService.findByTeacherAndIdGroup(id));
+        model.addAttribute("student",student);
+        model.addAttribute("group1", groupService.findByTeacherAndIdGroup(id));
         return "addStudent";
     }
 
@@ -59,9 +63,8 @@ public class StudentController {
         Teacher teacher = teacherService.getLoggedInTeacher();
         student.setTeacher(teacher);
         studentService.save(student);
-        model.addAttribute("students", studentService.findByTeacher(teacher));
-        model.addAttribute("student", new Student());
-        return "studentPage";
+        model.addAttribute("groups",groupService.findByTeacher(teacherService.getLoggedInTeacher()));
+        return "showGroups";
     }
 
     @RequestMapping(path = {"/deleteStudent/{id}"})

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymekeaf.org">
+<head>
+    <head th:include="layout :: head">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Students</title>
+        <style>
+         html, body
+{
+    background-color: #white;
+    font-family: 'Lato', sans-serif;
+    height: 100%
+
+}
+#container
+{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+#menu
+{
+    background-color: #303030;
+    margin-top: 20px;
+    color: #ffffff;
+    padding: 10px;
+
+}
+
+
+#content
+{
+    padding: 40px;
+    width: 250px;
+    background-color: #dedede;
+    height: 140px;
+    margin:0 auto;
+    margin-top: 200px;
+
+}
+
+.footer {
+ position: fixed;
+ bottom: 0px;
+ left: 1px;
+ height: 50px;
+ width: 100%;
+ text-align: center;
+ padding: 20px;
+ font-size: 18px;
+ clear: both;
+ color: black;
+ }
+
+
+
+
+
+        </style>
+    </head>
+<body>
+<div id="container">
+    <div th:replace="navbar.html"></div>
+
+    <div id="content">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group: ${groups}">
+                <td th:text="${group.getIdGroup()}">
+                <td th:text="${group.getGroupName()}">
+                <td>
+                    <form class="button" th:action="@{'/showAddStudent/' + ${group.getIdGroup()} }" method="get">
+                        <button type="submit">Add Student</button>
+                    </form>
+
+                    <form class="button" th:action="@{'/showStudentsInTheGroup/' + ${group.getIdGroup()} }" method="get">
+                        <button type="submit">Show Students</button>
+                    </form>
+
+                    <form class="button" th:action="@{'/deleteGroup/' + ${group.getIdGroup()} }" method="POST">
+                        <button type="submit">Delete Group</button>
+                    </form>
+
+                </td>
+            </tr>
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+</div>
+
+<div th:include="layout :: footer"></div>
+
+</body>
+</html>

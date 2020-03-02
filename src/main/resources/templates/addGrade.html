@@ -67,7 +67,7 @@
         <form method="post" th:action="@{/addGrade}" th:object="${grade}">
 
 
-            <label>Dodawanie oceny studentowi:</label>
+            <label>Adding grade to the student:</label>
             <tr th:each="student: ${students}">
                 <td th:text="${student.getName()}"></td>
                 <td th:text="${student.getSurname()}"></td>

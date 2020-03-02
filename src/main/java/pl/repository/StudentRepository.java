@@ -1,6 +1,7 @@
 package pl.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import pl.model.Group;
 import pl.model.Student;
 import pl.model.Teacher;
 
@@ -11,5 +12,7 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
     List<Student> findByNameAndTeacher(String name,Teacher teacher);
 
     List<Student> findByTeacher(Teacher teacher);
+
+    List<Student> findByGroup(Group group);
 
 }
